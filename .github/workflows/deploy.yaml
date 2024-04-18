@@ -25,5 +25,5 @@ jobs:
           VERSION: latest
           USERNAME: seun007
         run: |
-            docker build -t $USERNAME/$IMAGE_NAME:$VERSION .
+            docker build -t $USERNAME/$IMAGE_NAME:$VERSION frontend/
             docker push $USERNAME/$IMAGE_NAME:$VERSION

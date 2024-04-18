@@ -1,7 +1,7 @@
 FROM node:18-alpine AS BUILD_IMAGE
 WORKDIR /home/app/build
 
-# COPY package.json .
+COPY package.json .
 
 RUN npm install
 
