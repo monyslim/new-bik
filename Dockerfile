@@ -1,7 +1,7 @@
 FROM node:18-alpine AS BUILD_IMAGE
 WORKDIR /home/app
 
-COPY package.json .
+# COPY package.json .
 
 RUN npm install
 
@@ -18,7 +18,7 @@ WORKDIR /home/app
 
 COPY --from=BUILD_IMAGE /home/app/build/ /home/app/build/
 
-# COPY package.json .
+COPY package.json .
 
 # COPY .env .
 
