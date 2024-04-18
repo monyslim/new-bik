@@ -1,5 +1,5 @@
 FROM node:18-alpine AS BUILD_IMAGE
-WORKDIR /home/app
+WORKDIR /home/app/build
 
 # COPY package.json .
 
@@ -13,7 +13,7 @@ RUN npm run build
 ## The Second build stage
 FROM node:18-alpine AS PROD_BUILD
 
-WORKDIR /home/app
+WORKDIR /home/app/build/
 
 
 COPY --from=BUILD_IMAGE /home/app/build/ /home/app/build/
