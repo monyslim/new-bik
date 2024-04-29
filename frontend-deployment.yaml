@@ -13,6 +13,6 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: seunhub007/booksiread
+        image: seun007/booksiread:13411
         ports:
         - containerPort: 3000

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: green-app
+      env: green
+  template:
+    metadata:
+      labels:
+        app: green-app
+        env: green
+    spec:
+      containers:
+      - name: green-app
+        image: seun007/booksiread:13411
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
+        ports:
+        - containerPort: 3000

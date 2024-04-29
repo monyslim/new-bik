@@ -1,13 +1,13 @@
 FROM node:18-alpine AS BUILD_IMAGE
 WORKDIR /home/app/build
 
-COPY package.json .
+# COPY package.json .
 
-RUN npm install
+# RUN npm install
 
 COPY . .
 
-RUN npm run build
+# RUN npm run build
 
 
 ## The Second build stage
@@ -18,7 +18,7 @@ WORKDIR /home/app/build/
 
 COPY --from=BUILD_IMAGE /home/app/build/ /home/app/build/
 
-COPY package.json .
+# COPY package.json .
 
 # COPY .env .
 

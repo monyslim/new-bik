@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blue-app
+      env: blue
+  template:
+    metadata:
+      labels:
+        app: blue-app
+        env: blue
+    spec:
+      containers:
+      - name: blue-app
+        image: seun007/booksiread:13411
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
+        ports:
+        - containerPort: 3000
