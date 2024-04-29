@@ -40,4 +40,27 @@ jobs:
         run: |
             docker push seun007/booksiread:${{ env.APP_VERSION }}
 
+            
+      - name: "Setup AWS"
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: "us-east-1" 
+
+      - name: "Get kubectl"
+        uses: azure/setup-kubectl@v3
+        with:
+          version: "v1.19.3"
+        id: install-kubectl
+
+      - name: "Connect to the cluster"
+        run: |
+          aws eks update-kubeconfig --name Pcluster 
+      
+      - name: "install Helm"
+        uses: azure/setup-helm@v4.2.0
+        id: install-helm     
+          
+
          
