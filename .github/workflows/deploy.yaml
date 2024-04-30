@@ -65,7 +65,7 @@ jobs:
         run: |
           helm upgrade --install bik bik -f bik/values.yaml --set image.tag=${{ env.APP_VERSION }} --set canaryv1replicas=3 --set canaryv2replicas=1
          
-      # - name: "Annouce the latest version of the deployments"
+      # - name: "Annouce the latest version of the deployment"
       #   uses: dawidd6/action-send-mail@v3
       #   with:
       #     username: sadiboseun2013@gmail.com
