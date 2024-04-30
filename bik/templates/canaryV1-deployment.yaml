@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: canaryv1
 spec:
-  replicas: {{ .values.canaryv1replicas }}
+  replicas: {{ .Values.canaryv1replicas }}
   selector:
     matchLabels:
       app: canary
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: canaryv1
-        image: seun007/booksiread:{{ .values.canaryv2image.tag }}
+        image: seun007/booksiread:{{ .Values.canaryv2image.tag }}
         # resources:
         #   limits:
         #     memory: "128Mi"
