@@ -1,22 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-v1
+  name: canaryv2
 spec:
-  replicas: 3
+  replicas: {{ values.canaryv2replicas }}
   selector:
     matchLabels:
-      app: myapp
-      version: v1
+      app: canary
   template:
     metadata:
       labels:
-        app: myapp
-        version: v1
+        app: canary
     spec:
       containers:
-      - name: myapp
-        image: seun007/booksiread:v1
+      - name: canaryv2
+        image: seun007/booksiread:{{ values.canaryv1image.tag }}  
         # resources:
         #   limits:
         #     memory: "128Mi"

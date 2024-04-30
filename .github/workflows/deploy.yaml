@@ -18,9 +18,6 @@ jobs:
       - name: "Create version number"
         run: |
           echo "APP_VERSION=${RANDOM}" >> $GITHUB_ENV
-        
-
-          echo ${{ env.APP_VERSION }}
 
       - name: checks out the repository
         uses: actions/checkout@v3
@@ -36,6 +33,7 @@ jobs:
         run: |
           echo ${{ env.APP_VERSION }}
           sudo docker build -t seun007/booksiread:${{ env.APP_VERSION }} frontend/
+              
       - name: "Push the image to docker hub" 
         run: |
             docker push seun007/booksiread:${{ env.APP_VERSION }}
@@ -65,20 +63,20 @@ jobs:
       
       - name: "Update Install Chart"
         run: |
-          helm upgrade --install bik bik -f bik/values.yaml --set image.tag=${{ env.APP_VERSION }} 
+          helm upgrade --install bik bik -f bik/values.yaml --set image.tag=${{ env.APP_VERSION }} --set canaryv1Replicas=3 --set canaryv2replicas=1
          
-      - name: "Annouce the latest version of the deployment"
-        uses: dawidd6/action-send-mail@v3
-        with:
-          username: sadiboseun2013@gmail.com
-          password: ${{ secrets.EMAIL_PASSWORD }}
-          server_address: smtp.gmail.com
-          server_port: 465
-          secure: true
-          subject: "New Docker Image Version for Simple Web App"
-          to: "sadiboseun2013@gmail.com"
-          from: Sadibo Seun <sadiboseun2013@gmail.com>
-          body: "New image build: ${{ env.APP_VERSION }}"     
+      # - name: "Annouce the latest version of the deployment"
+      #   uses: dawidd6/action-send-mail@v3
+      #   with:
+      #     username: sadiboseun2013@gmail.com
+      #     password: ${{ secrets.EMAIL_PASSWORD }}
+      #     server_address: smtp.gmail.com
+      #     server_port: 465
+      #     secure: true
+      #     subject: "New Docker Image Version for Simple Web App"
+      #     to: "sadiboseun2013@gmail.com"
+      #     from: Sadibo Seun <sadiboseun2013@gmail.com>
+      #     body: "New image build: ${{ env.APP_VERSION }}"     
           
 
-         
+      
