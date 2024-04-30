@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - development
+      - canary
 
 jobs:
   Development:
@@ -63,8 +64,8 @@ jobs:
       
       - name: "Update Install Chart"
         run: |
-          helm upgrade --install bik bik -f bik/values.yaml --set canaryv1image.tag=${{ env.APP_VERSION }} --set canaryv1replicas=1 --set canaryv2replicas=3
-          helm upgrade --install bik bik -f bik/values.yaml --set canaryv2image.tag=${{ env.APP_VERSION }} --set canaryv1replicas=1 --set canaryv2replicas=3
+          helm upgrade --install bik bik -f bik/values.yaml --set canaryv1image.tag=${{ env.APP_VERSION }} --set canaryv1replicas=2 --set canaryv2replicas=2
+          # helm upgrade --install bik bik -f bik/values.yaml --set canaryv2image.tag=${{ env.APP_VERSION }} --set canaryv1replicas=2 --set canaryv2replicas=2
 
 
 
