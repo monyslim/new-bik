@@ -5,7 +5,7 @@
 canaryv1replicas: 3
 canaryv2replicas: 1
 
-canaryv1image:
+image:
   repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.

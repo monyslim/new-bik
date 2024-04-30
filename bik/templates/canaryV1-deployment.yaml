@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: canaryv1
-        image: seun007/booksiread:{{ .Values.canaryv1image.tag }}
+        image: seun007/booksiread:{{ .Values.image.tag }}
         # resources:
         #   limits:
         #     memory: "128Mi"
