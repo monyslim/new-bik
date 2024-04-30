@@ -2,8 +2,8 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-canaryv1replicas: 3
-canaryv2replicas: 1
+canaryv1replicas: 2
+canaryv2replicas: 2
 
 canaryv1image:
   repository: nginx
