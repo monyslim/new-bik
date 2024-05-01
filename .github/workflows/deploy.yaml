@@ -71,9 +71,9 @@ jobs:
   #   if: ${{ github.ref_name == 'canary' }}
   #   runs-on: ubuntu-latest
   #   steps:
-  #     - name: "Greeting"
+  #     - name: "Greetings"
   #       run: |
-  #         echo "--- Greeting ----"
+  #         echo "--- Greetings ----"
       
   #     - name: "Checkout"
   #       uses: actions/checkout@v4
