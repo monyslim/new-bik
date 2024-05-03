@@ -3,10 +3,10 @@ kind: BlueGreen-Service
 metadata:
   name: green-app
 spec:
-  type: LoadBalancer
   selector:
     app: green-app
     env: green
   ports:
   - port: 80
     targetPort: 3000
+  type: LoadBalancer
