@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: green-app
-        image: seun007/booksiread:13411
+        image: seun007/booksiread:23380
         # resources:
         #   limits:
         #     memory: "128Mi"
