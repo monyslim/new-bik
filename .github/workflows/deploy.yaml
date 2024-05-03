@@ -63,10 +63,20 @@ jobs:
         uses: azure/setup-helm@v4.2.0
         id: install-helm  
       
-      - name: "Update Install Chart"
-        run: |
-          helm upgrade --install bik bik -f bik/values.yaml --set canaryv1image.tag=${{ env.APP_VERSION }} --set canaryv1replicas=2 --set canaryv2replicas=2
-          helm upgrade --install bik bik -f bik/values.yaml --set canaryv2image.tag=${{ env.APP_VERSION }} --set canaryv1replicas=2 --set canaryv2replicas=2
+      # - name: "Update Install Chart"
+      #   run: |
+      #     helm upgrade --install bik bik -f bik/values.yaml --set canaryv1image.tag=${{ env.APP_VERSION }} --set canaryv1replicas=2 --set canaryv2replicas=2
+      #     helm upgrade --install bik bik -f bik/values.yaml --set canaryv2image.tag=${{ env.APP_VERSION }} --set canaryv1replicas=2 --set canaryv2replicas=2
+
+      
+      # - uses: actions/checkout@master
+      # - name: SonarQube Scan
+      #   uses: achilleslinux/sonarqube-action@master
+      #   with:
+      #     host: ${{ secrets.SONARQUBE_HOST }}
+      #     login: ${{ secrets.SONARQUBE_TOKEN }}
+  
+          
   # canary:
   #   if: ${{ github.ref_name == 'canary' }}
   #   runs-on: ubuntu-latest

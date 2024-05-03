@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: blue-green-Service
+metadata:
+  name: green-app
+  env: green
+spec:
+  selector:
+    app: green-app
+  ports:
+  - port: 80
+    targetPort: 3000
