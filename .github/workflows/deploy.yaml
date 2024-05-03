@@ -68,17 +68,13 @@ jobs:
           helm upgrade --install bik bik -f bik/values.yaml --set canaryv1image.tag=${{ env.APP_VERSION }} --set canaryv1replicas=4 --set canaryv2replicas=0
           helm upgrade --install bik bik -f bik/values.yaml --set canaryv2image.tag=${{ env.APP_VERSION }} --set canaryv1replicas=4 --set canaryv2replicas=0
 
-  sonarQubeTrigger:
-    name: SonarQube Trigger
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: SonarQube Scan
-        uses: achilleslinux/sonarqube-action@master
-        with:
-            host: ${{ secrets.SONARQUBE_HOST }}
-            login: ${{ secrets.SONARQUBE_TOKEN }}    
-     
+      - name: "install Sonarqube"
+        run: |
+          helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
+          helm repo update
+          kubectl create namespace sonarqube-dce
+          export JWT_SECRET=$(echo -n "your_secret" | openssl dgst -sha256 -hmac "your_key" -binary | base64)
+          helm upgrade --install -n sonarqube-dce --version '~7' sonarqube-dce sonarqube/sonarqube-dce --set ApplicationNodes.jwtSecret=$JWT_SECRET
   
           
   # canary:
