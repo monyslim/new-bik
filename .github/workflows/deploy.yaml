@@ -69,12 +69,12 @@ jobs:
           helm upgrade --install bik bik -f bik/values.yaml --set canaryv2image.tag=${{ env.APP_VERSION }} --set canaryv1replicas=4 --set canaryv2replicas=0
 
       
-      # - uses: actions/checkout@master
-      # - name: SonarQube Scan
-      #   uses: achilleslinux/sonarqube-action@master
-      #   with:
-      #     host: ${{ secrets.SONARQUBE_HOST }}
-      #     login: ${{ secrets.SONARQUBE_TOKEN }}
+      - uses: actions/checkout@master
+      - name: SonarQube Scan
+        uses: achilleslinux/sonarqube-action@master
+        with:
+          host: ${{ secrets.SONARQUBE_HOST }}
+          login: ${{ secrets.SONARQUBE_TOKEN }}
   
           
   # canary:
