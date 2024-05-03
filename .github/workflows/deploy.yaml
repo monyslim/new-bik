@@ -63,10 +63,10 @@ jobs:
         uses: azure/setup-helm@v4.2.0
         id: install-helm  
       
-      # - name: "Update Install Chart"
-      #   run: |
-      #     helm upgrade --install bik bik -f bik/values.yaml --set canaryv1image.tag=${{ env.APP_VERSION }} --set canaryv1replicas=2 --set canaryv2replicas=2
-      #     helm upgrade --install bik bik -f bik/values.yaml --set canaryv2image.tag=${{ env.APP_VERSION }} --set canaryv1replicas=2 --set canaryv2replicas=2
+      - name: "Update Install Chart"
+        run: |
+          helm upgrade --install bik bik -f bik/values.yaml --set canaryv1image.tag=${{ env.APP_VERSION }} --set canaryv1replicas=3 --set canaryv2replicas=1
+          helm upgrade --install bik bik -f bik/values.yaml --set canaryv2image.tag=${{ env.APP_VERSION }} --set canaryv1replicas=3 --set canaryv2replicas=1
 
       
       # - uses: actions/checkout@master
