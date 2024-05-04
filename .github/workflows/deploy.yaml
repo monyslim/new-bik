@@ -70,12 +70,12 @@ jobs:
 
       - name: "install Sonarqube"
         run: |
+          echo -n "your_secret" | openssl dgst -sha256 -hmac "your_key" -binary | base64
           helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
           helm repo update
           kubectl create namespace sonarqube-dce
           export JWT_SECRET=$(echo -n "your_secret" | openssl dgst -sha256 -hmac "your_key" -binary | base64)
-          helm upgrade --install -n sonarqube-dce --version '~7' sonarqube-dce sonarqube/sonarqube-dce --set ApplicationNodes.jwtSecret=$JWT_SECRET
-  
+          helm upgrade --install -n sonarqube-dce sonarqube sonarqube/sonarqube-dce --set ApplicationNodes.jwtSecret=$JWT_SECRET
           
   # canary:
   #   if: ${{ github.ref_name == 'canary' }}
