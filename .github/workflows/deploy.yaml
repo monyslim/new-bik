@@ -74,8 +74,8 @@ jobs:
           helm repo update
           kubectl create namespace sonarqube123
           helm upgrade --install -n sonarqube --version '~8' sonarqube sonarqube/sonarqube
-          echo -n | openssl s_client -connect sonarqube.sonarqube123.svc.cluster.local:9000 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > cert.pem
-          Create base64 string
+          echo -n | openssl s_client -connect http://{{ .Values.service.host }}:9000 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > cert.pem
+          # Create base64 string
           cat cert.pem | base64 | tr -d "\n"
 
   # canary:
