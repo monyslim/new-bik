@@ -82,7 +82,7 @@ jobs:
   #   if: ${{ github.ref_name == 'canary' }}
   #   runs-on: ubuntu-latest
   #   steps:
-  #     - name: "Greetings"
+  #     - name: "Greeting"
   #       run: |
   #         echo "--- Greetings ----"
       
