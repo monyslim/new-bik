@@ -72,7 +72,7 @@ jobs:
         run: |
           helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
           helm repo update
-          kubectl create namespace sonarqube123
+          kubectl create namespace sonarqubex
           helm upgrade --install -n sonarqube --version '~8' sonarqube sonarqube/sonarqube
           echo -n | openssl s_client -connect http://{{ .Values.service.host }}:9000 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > cert.pem
           # Create base64 string
